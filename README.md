@@ -11,7 +11,7 @@ See `libCanvas.h` and `Demo.c` for more details.
   
 ## How to compile ##
 Only tested under TCC on win32. Must have w32api package installed.  
-`tcc -shared -lgdiplus Window.c Paint.c IO.c Misc.c`  
+`tcc -shared -lgdiplus Window.c Paint.c IO.c Misc.c -o libCanvas.dll`  
 Place `libCanvas.def` under your library path, then  
 `tcc -llibCanvas Demo.c`  
   
