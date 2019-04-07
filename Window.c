@@ -59,7 +59,7 @@ DWORD WINAPI WndThread(LPVOID lpParam) {
   //If failed, destroy canvas & end thread.
   if(!pC->hDC) {DestroyWindow(pC->hWnd); free(pC); return -1;}
   //Send canvas ptr to window.
-  SetWindowLong(pC->hWnd, GWL_USERDATA, (LONG)pC);
+  SetWindowLongPtr(pC->hWnd, GWLP_USERDATA, (LONG_PTR)pC);
   //Enter message loop.
   MSG msg;
   while(pC->hWnd && GetMessage(&msg, pC->hWnd, 0, 0) > 0) { //Wait for cvsDestory()
@@ -77,7 +77,7 @@ DWORD WINAPI WndThread(LPVOID lpParam) {
 
 //WndProc: Event processing.
 LRESULT CALLBACK WndProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam) {
-  PCVS pC = (PCVS)GetWindowLong(hWnd, GWL_USERDATA); //Fetch canvas ptr from WndThread().
+  PCVS pC = (PCVS)GetWindowLongPtr(hWnd, GWLP_USERDATA); //Fetch canvas ptr from WndThread().
   switch(Msg) {
     case WM_PAINT: { //cvsRefresh() or system redraw.
       PAINTSTRUCT ps;

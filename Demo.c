@@ -1,6 +1,7 @@
-//$TCC -I. -L./Release/ -llibCanvas Demo.c -o ./Release/Demo.exe
+//gcc -I. -L./Release/ Demo.c -llibCanvas -o ./Release/Demo.exe
 //Demo.c: libCanvas test.
 //Remember to re-compile after major changes!
+#include <stdio.h>
 #include "libCanvas.h"
 
 void ClickCB(PCVS pC, int x, int y) {
